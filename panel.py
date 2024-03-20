@@ -480,7 +480,8 @@ class MainGUI(tk.Tk):
 
     def needPagesRefine(self):  # 这个函数用于整理用户输入的页码
         pageStr = self.needPages.get()
-        page_list = pageStr.split(',')  # 转成列表格式方便操作
+        page_list = re.split(r'[,，\s]+', pageStr)
+        #page_list = pageStr.split(',')  # 转成列表格式方便操作
         pageList = []  # 这里犯了个愚蠢的错误，直接把数据加入page_list导致循环迭代并报错，因此新建一个列表
         if page_list == [''] or page_list == ['请使用英文逗号']:
             return [-99]
